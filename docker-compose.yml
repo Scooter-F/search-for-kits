@@ -1,0 +1,19 @@
+version: "1.0"
+services:
+  frontend:
+    build: ./front
+    depends_on:
+      - backend
+    ports:
+      - "3002:3000"
+    networks:
+      - search-for-kits-network
+  backend:
+    build: ./back
+    ports:
+      - "3001:3001"
+    networks: 
+     - search-for-kits-network
+
+networks:
+  search-for-kits-network:
