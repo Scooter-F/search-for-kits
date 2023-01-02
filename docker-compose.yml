@@ -10,10 +10,29 @@ services:
       - search-for-kits-network
   backend:
     build: ./back
+    depends_on:
+      - mongo
     ports:
       - "3001:3001"
     networks: 
      - search-for-kits-network
 
+  mongo:
+    image: mongo
+    restart: always
+    volumes: 
+      - mongodb_data:/data/db
+    environment: 
+      MONGODB_INITDB_ROOT_USERNAME: username
+      MONGODB_INITDB_ROOT_PASSWORD: password
+      MOGODB_INITDB_DATABASE: analytics
+    ports:
+      - "27017:27017"
+    networks: 
+     - search-for-kits-network
+
 networks:
   search-for-kits-network:
+
+volumes: 
+  mongodb_data:

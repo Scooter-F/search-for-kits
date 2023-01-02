@@ -1,9 +1,8 @@
 import express from 'express';
+import search from './search.js'
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
-    res.send('Hello world')
-})
+routes.use('/search', search)
 
 export default routes
